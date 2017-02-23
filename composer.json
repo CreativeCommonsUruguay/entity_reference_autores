@@ -1,0 +1,11 @@
+{
+    "name": "vendor/entity-reference-autores",
+    "description": "Description of project entity_reference_autores.",
+    "authors": [
+        {
+            "name": "marco",
+            "email": "marcoscalone@gmail.com"
+        }
+    ],
+    "require": {}
+}
