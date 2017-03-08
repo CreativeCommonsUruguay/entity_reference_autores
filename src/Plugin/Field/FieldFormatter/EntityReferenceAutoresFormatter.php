@@ -44,7 +44,7 @@ class EntityReferenceAutoresFormatter extends EntityReferenceCategorizedFormatte
             $category_entity = entity_load($category_type, $values[$delta]['category_id']);
             $category = ($category_entity->getWeight() > 0) ? ' (' . $category_entity->label() . ')' : '';
 
-
+            //TODO: dar la opcion de lista LI o inline separado por comas.
             if ($output_as_link && isset($uri) && !$entity->isNew()) {
                 $elements[$delta] = [
                     '#type' => 'link',
@@ -65,6 +65,17 @@ class EntityReferenceAutoresFormatter extends EntityReferenceCategorizedFormatte
                 $elements[$delta] = array('#plain_text' => $label . $category);
             }
             $elements[$delta]['#cache']['tags'] = $entity->getCacheTags();
+
+            
+            /* Descomentar estas lineas para usar el template definido en el modulo
+            //variables para template. 
+            $elements[$delta]['#theme'] = 'entity_reference_autores_formatter';
+            $elements[$delta]['#url'] = $uri->toString();
+            $elements[$delta]['#category'] = $category_entity->label();
+            $elements[$delta]['#original_name'] = $entity->label();
+            $elements[$delta]['#override_name'] = $values[$delta]['name_override'];
+            unset($elements[$delta]['#suffix']);
+            */
         }
 
         return $elements;

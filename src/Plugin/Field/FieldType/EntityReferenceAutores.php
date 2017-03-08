@@ -13,12 +13,13 @@ use Drupal\Core\TypedData\DataReferenceDefinition;
 use Drupal\Core\Entity\TypedData\EntityDataDefinition;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
  *
  * @FieldType(
  *   id = "entity_reference_autores",
- *   label = @Translation("Entity reference Autores"),
+ *   label = @Translation("Entity reference autores"),
  *   description = @Translation("An entity field containing an entity reference with a category and a Name Voerride."),
  *   category = @Translation("Reference"),
  *   default_widget = "entity_reference_autores_autocomplete_widget",
@@ -29,6 +30,10 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class EntityReferenceAutores extends EntityReferenceCategorized {
 
+    /**
+     * max lenth for the name override
+     * is used in schema so if chenged may affect olready instantiated fields
+     */
     const NAME_OVERRIDE_MAXLENGTH = 200;
 
     /**
@@ -36,9 +41,9 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
      */
     public static function defaultFieldSettings() {
         return array(
-                //TODO: agregar valores por defecto para la configuracion del campo
-                //'category_bundle' => array(),
+            'name_override' => array(),
                 ) + parent::defaultFieldSettings();
+        ;
     }
 
     public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
@@ -55,7 +60,7 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
 
         $columns = array(
             'name_override' => array(
-                'description' => 'Nombre para sobreescribir el Nombre/titulo del autor referenciado.',
+                'description' => 'Nombre para sobreescribir el Nombre/título del autor referenciado.',
                 'type' => 'varchar_ascii',
                 'length' => static::NAME_OVERRIDE_MAXLENGTH,
                 'not null' => FALSE,
@@ -71,62 +76,39 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
 
         return $schema;
     }
-    
-    /**
-   * {@inheritdoc}
-   */
-  public function getConstraints() {
-    $constraint_manager = \Drupal::typedDataManager()->getValidationConstraintManager();
-    $constraints = parent::getConstraints();
-    $constraints[] = $constraint_manager->create('ComplexData', array(
-      'name_override' => array(
-        'Length' => array(
-          'max' => static::NAME_OVERRIDE_MAXLENGTH,
-          'maxMessage' => t('%name: El largo máximo para el nombre es @max caracteres.', array('%name' => $this->getFieldDefinition()->getLabel(), '@max' => static::NAME_OVERRIDE_MAXLENGTH)),   //TODO:posible error en $this->getFIleDefinition
-        )
-      ),
-    ));
-    return $constraints;
-  }
 
     /**
      * {@inheritdoc}
      */
-//    public function isEmpty() {
-//        $value = $this->get('name_override')->getValue();
-//        return $value === NULL || trim($value) === '' ;
-//    }
+    public function getConstraints() {
+        $constraint_manager = \Drupal::typedDataManager()->getValidationConstraintManager();
+        $constraints = parent::getConstraints();
+        $constraints[] = $constraint_manager->create('ComplexData', array(
+            'name_override' => array(
+                'Length' => array(
+                    'max' => static::NAME_OVERRIDE_MAXLENGTH,
+                    'maxMessage' => t('%name: El largo máximo para el nombre es @max caracteres.', array('%name' => $this->getFieldDefinition()->getLabel(), '@max' => static::NAME_OVERRIDE_MAXLENGTH)), //TODO:posible error en $this->getFIleDefinition
+                )
+            ),
+        ));
+        return $constraints;
+    }
 
     /**
      * {@inheritdoc}
      */
     public function fieldSettingsForm(array $form, FormStateInterface $form_state) {
         $form = parent::fieldSettingsForm($form, $form_state);
-
-//        $field = $form_state->getFormObject()->getEntity();
-//        $category_type = $this->getSetting('category_type');   
-//        $form['autores_settings'] = array(
-//            '#type' => 'details',
-//            '#title' => t('Autores Settings'),
-//            '#open' => TRUE,
-//            '#tree' => TRUE,
-//            '#process' => array(array(get_class($this), 'formProcessMergeParent')),
-//        );
-//
-//        $form['autores_settings']['setting1'] = array(
-//            '#type' => 'select',
-//            '#title' => t('Category taxonomy'),
-//            '#options' => $options,
-//            '#default_value' => $field->getSetting('category_bundle'),
-//            '#required' => TRUE,
-//            '#ajax' => TRUE,
-//            '#limit_validation_errors' => array(),
-//        );
-        //TODO: analizar dependenias al igual que EntityReference
-        //TODO: permitir crear entidades si no existen para usar una taxonomia libre.
-        //      Ver configuracion de auto_create de ER
-
+        //TODO: hay configuraciones particulares?
         return $form;
+    }
+
+    /**
+     * Do not want preconfigured options (at least for the moment)
+     * @return type
+     */
+    public static function getPreconfiguredOptions() {
+        return null; 
     }
 
 }

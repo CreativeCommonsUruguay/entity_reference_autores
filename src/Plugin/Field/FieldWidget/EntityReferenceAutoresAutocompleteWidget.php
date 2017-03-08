@@ -30,8 +30,9 @@ class EntityReferenceAutoresAutocompleteWidget extends EntityReferenceCategorize
             '#size' => 20,
             '#maxlength' => 200, //TODO: obtener valor de constante
             '#default_value' => (isset($items[$delta]->name_override) ) ? $items[$delta]->name_override : NULL,
-            '#description' => t('Nombre para sobrescribir'),
-            textfield
+            '#description' => t('Nombre para sobrescribir. Dejar en blanco si se desea utilizar el título original de la entidad referenciada'),
+            '#weight' => '200'
+
         );
 
         return $element;
