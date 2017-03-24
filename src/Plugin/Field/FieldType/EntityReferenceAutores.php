@@ -2,18 +2,10 @@
 
 namespace Drupal\entity_reference_autores\Plugin\Field\FieldType;
 
-use Drupal\entity_reference_categorized\Plugin\Field\FieldType\EntityReferenceCategorized;
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
-use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Core\StringTranslation\TranslatableMarkup;
-use Drupal\Core\TypedData\DataReferenceTargetDefinition;
-use Drupal\Core\TypedData\DataReferenceDefinition;
-use Drupal\Core\Entity\TypedData\EntityDataDefinition;
-use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\TypedData\DataDefinition;
+use Drupal\entity_reference_categorized\Plugin\Field\FieldType\EntityReferenceCategorized;
 
 /**
  *
