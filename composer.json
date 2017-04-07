@@ -22,7 +22,7 @@
          "entity_reference_categorized": {
              "type": "vcs",
              "url": "https://github.com/CreativeCommonsUruguay/entity_reference_categorized"
-         },
+         }
        },
      "require": {
        "drupal/entity_reference_categorized": "*"
