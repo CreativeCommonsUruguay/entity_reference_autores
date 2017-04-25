@@ -66,9 +66,9 @@ class EntityReferenceAutoresFormatter extends EntityReferenceCategorizedFormatte
             }
             $elements[$delta]['#cache']['tags'] = $entity->getCacheTags();
 
-            
-            /* Descomentar estas lineas para usar el template definido en el modulo
-            //variables para template. 
+
+            /* //Descomentar estas lineas para usar el template definido en el modulo
+            //variables para template.
             $elements[$delta]['#theme'] = 'entity_reference_autores_formatter';
             $elements[$delta]['#url'] = $uri->toString();
             $elements[$delta]['#category'] = $category_entity->label();

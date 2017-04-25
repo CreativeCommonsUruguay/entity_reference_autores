@@ -53,7 +53,7 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
         $columns = array(
             'name_override' => array(
                 'description' => 'Nombre para sobreescribir el Nombre/título del autor referenciado.',
-                'type' => 'varchar_ascii',
+                'type' => 'varchar',
                 'length' => static::NAME_OVERRIDE_MAXLENGTH,
                 'not null' => FALSE,
             ),
@@ -100,7 +100,7 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
      * @return type
      */
     public static function getPreconfiguredOptions() {
-        return null; 
+        return null;
     }
 
 }
