@@ -15,13 +15,12 @@ use Drupal\entity_reference_categorized\Plugin\Field\FieldType\EntityReferenceCa
  * Implements hook_field_views_data().
  *
  * The function implements the hook in behalf of 'core' because it adds a
- * relationship and a reverse relationship to entity_reference field type, which
- * is provided by core.
+ * relationship and a reverse relationship to entity_reference_autores field type.
  * 
  * Copiado de: core/modules/views/views.views.inc -> core_field_views_data(...)
- * el core declara las relaciones solo para el tipo de contenido entity_reference 
- * por ende aunque se extiendan las clases que definen este tipo de entidad no 
- * no se generan las relaciones. Por ende se copia el codigo
+ * Necesario porque el core declara las relaciones solo para el tipo de
+ * contenido entity_reference por ende aunque se extiendan las clases que 
+ * definen este tipo de entidad no se generan las relaciones. 
  * 
  */
 function entity_reference_autores_field_views_data(FieldStorageConfigInterface $field_storage) {
