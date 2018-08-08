@@ -1,7 +1,7 @@
 {
     "name": "drupal/entity_reference_autores",
     "description": "Extends Entity Reference Categorized adding reference name override and a custom formatter",
-    "type": "drupal-module",
+    "type": "drupal-custom-module",
     "homepage": "https://github.com/CreativeCommonsUruguay/entity_reference_autores",
     "license": "GPL",
     "authors": [

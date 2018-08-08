@@ -42,9 +42,7 @@ class EntityReferenceAutoresFormatter extends EntityReferenceCategorizedFormatte
 
             $category_type = $this->getFieldSetting('category_type');
             $category_entity = entity_load($category_type, $values[$delta]['category_id']);
-            //muestro categoria solo si NO s el primer termino de la taxonomia
             $category = (!is_null($category_entity) && $category_entity->getWeight() > 0) ? ' (' . $category_entity->label() . ')' : '';
-
             //TODO: dar la opcion de lista LI o inline separado por comas.
             if ($output_as_link && isset($uri) && !$entity->isNew()) {
                 $elements[$delta] = [
@@ -67,9 +65,9 @@ class EntityReferenceAutoresFormatter extends EntityReferenceCategorizedFormatte
             }
             $elements[$delta]['#cache']['tags'] = $entity->getCacheTags();
 
-
-            /* //Descomentar estas lineas para usar el template definido en el modulo
-            //variables para template.
+            
+            /* Descomentar estas lineas para usar el template definido en el modulo
+            //variables para template. 
             $elements[$delta]['#theme'] = 'entity_reference_autores_formatter';
             $elements[$delta]['#url'] = $uri->toString();
             $elements[$delta]['#category'] = $category_entity->label();

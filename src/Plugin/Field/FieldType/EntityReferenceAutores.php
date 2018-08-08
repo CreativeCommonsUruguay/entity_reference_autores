@@ -100,7 +100,7 @@ class EntityReferenceAutores extends EntityReferenceCategorized {
      * @return type
      */
     public static function getPreconfiguredOptions() {
-        return null;
+        return null; 
     }
 
 }
